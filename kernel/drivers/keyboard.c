@@ -1,6 +1,7 @@
 #include <kernel/keyboard.h>
 #include <kernel/ports.h>
 #include <kernel/isr.h>
+#include <kernel/shell.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
@@ -34,7 +35,8 @@ static void keyboard_callback(registers_t *regs) {
         printf("\b");
     } else if (scancode == ENTER) {
         printf("\n");
-//        user_input(key_buffer); /* kernel-controlled function */
+        //TODO replace with callback execution
+        shell_run_command(key_buffer); /* kernel-controlled function */
         key_buffer[0] = '\0';
     } else {
         char letter = sc_ascii[(int)scancode];
