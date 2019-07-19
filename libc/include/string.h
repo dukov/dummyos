@@ -17,6 +17,7 @@ size_t strlen(const char*);
 char* itoa(int, char* , int);
 void append(char* , char);
 void backspace(char* );
+int strcmp(char*, char*);
 
 #ifdef __cplusplus
 }
