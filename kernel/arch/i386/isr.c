@@ -1,6 +1,7 @@
 #include <kernel/isr.h>
 #include <kernel/idt.h>
 #include <kernel/ports.h>
+#include <kernel/keyboard.h>
 #include <stdio.h>
 
 isr_t interrupt_handlers[256];
@@ -140,5 +141,5 @@ void irq_install() {
     /* IRQ0: timer */
     //init_timer(50);
     /* IRQ1: keyboard */
-    //init_keyboard();
+    init_keyboard();
 }

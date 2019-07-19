@@ -19,6 +19,7 @@ LDFLAGS:=$(LDFLAGS)
 LIBS:=$(LIBS) -nostdlib -lk -lgcc
 
 ARCHDIR=arch/$(HOSTARCH)
+DRVDIR=drivers
 
 include $(ARCHDIR)/make.config
 
@@ -30,6 +31,7 @@ LIBS:=$(LIBS) $(KERNEL_ARCH_LIBS)
 KERNEL_OBJS=\
 $(KERNEL_ARCH_OBJS) \
 kernel/kernel.o \
+$(DRVDIR)/keyboard.o \
 
 OBJS=\
 $(ARCHDIR)/crti.o \

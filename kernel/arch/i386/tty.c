@@ -38,11 +38,19 @@ void terminal_putentryat(unsigned char c, uint8_t color, size_t x, size_t y) {
 	terminal_buffer[index] = vga_entry(c, color);
 }
 
+void teminal_backspace() {
+    terminal_column--;
+    terminal_putchar(' ');
+}
+
 void terminal_putchar(char c) {
 	unsigned char uc = c;
         if (c == '\n') {
             terminal_column = 0;
             terminal_row++;
+        } else if (uc == 0x08) {
+            terminal_column--;
+            terminal_putentryat(' ', terminal_color, terminal_column, terminal_row);
         } else {
             terminal_putentryat(uc, terminal_color, terminal_column, terminal_row);
 	    if (++terminal_column == VGA_WIDTH) {
