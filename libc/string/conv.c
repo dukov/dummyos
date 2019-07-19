@@ -53,3 +53,14 @@ char* itoa(int value, char* buffer, int base)
     // reverse the string and return it
     return reverse(buffer, 0, i - 1);
 }
+
+void append(char s[], char n) {
+    int len = strlen(s);
+    s[len] = n;
+    s[len+1] = '\0';
+}
+
+void backspace(char s[]) {
+    int len = strlen(s);
+    s[len-1] = '\0';
+}

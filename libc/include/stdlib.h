@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+#define UNUSED(x) (void)(x)
 #define low_16(address) (uint16_t)((address) & 0xFFFF)
 #define high_16(address) (uint16_t)(((address) >> 16) & 0xFFFF)
 __attribute__((__noreturn__))
