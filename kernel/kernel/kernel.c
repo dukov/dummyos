@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <kernel/tty.h>
 #include <kernel/isr.h>
@@ -10,6 +11,7 @@ void kernel_main(void) {
     asm volatile("sti");
     printf("Hello, kernel World!\n");
     asm("int $1");
+    mm_init();
     for(;;) {
         asm("hlt");
     }
