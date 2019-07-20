@@ -64,7 +64,7 @@ int printf(const char* restrict format, ...) {
                 } else if (*format == 'd') {
 			format++;
 			int num = va_arg(parameters, int);
-                        char *buf;
+                        char buf[32];
                         const char* str = itoa(num, buf, 10);
 			size_t len = strlen(str);
 			if (maxrem < len) {
@@ -77,7 +77,7 @@ int printf(const char* restrict format, ...) {
                 } else if (*format == 'x') {
 			format++;
 			int num = va_arg(parameters, int);
-                        char *buf;
+                        char buf[32];
                         const char* str = itoa(num, buf, 16);
 			size_t len = strlen(str);
 			if (maxrem < len) {
