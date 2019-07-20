@@ -10,7 +10,7 @@ static char *shell_cmds[] = {
 //    "READALL",
 //    "RAMFS",
 //    "PT",
-//    "MALLOC",
+    "MALLOC",
 };
 
 
@@ -20,7 +20,7 @@ static shell_function_t shell_functions[] = {
 //    &shell_read_all_sectors,
 //    &shell_load_ramfs,
 //    &shell_read_pt,
-//    &shell_malloc
+    &shell_malloc
 };
 
 void shell_run_command(char *input) {
@@ -73,8 +73,15 @@ void shell_load_ramfs() {
 void shell_read_pt() {
     mbr_read_pt(0xa0);
 }
-
-void shell_malloc() {
-    void *ptr = malloc(sizeof(uint16_t));    
-}
 */
+void shell_malloc() {
+    void *ptr = malloc(sizeof(uint16_t));
+    printf("Allocated address %x \n", (int32_t)ptr);
+    void *ptr1 = malloc(sizeof(uint16_t));
+    printf("Allocated address %x \n", (int32_t)ptr1);
+    void *ptr2 = malloc(sizeof(uint16_t));
+    printf("Allocated address %x \n", (int32_t)ptr2);
+    free(ptr1);
+    void *ptr3 = malloc(sizeof(uint16_t));
+    printf("Allocated address %x \n", (int32_t)ptr3);
+}
