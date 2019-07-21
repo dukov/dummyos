@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 #if defined(__is_libk)
 extern void *kernel_end;
@@ -37,7 +36,6 @@ m_record_t *create_mr(m_record_t *cur_mr, m_record_t *next, size_t size) {
 
 char* malloc(size_t size) {
     uint32_t cur_rec = heap_begin;
-    m_record_t *prev_rec;
     while (cur_rec < heap_end) {
         m_record_t *mr = (m_record_t *)cur_rec;
         if (mr->next != NULL) {
@@ -64,7 +62,7 @@ char* malloc(size_t size) {
 }
 
 void free(void *ptr) {
-    m_record_t *mr = ((uint32_t)ptr) - sizeof(m_record_t);
+    m_record_t *mr = (m_record_t *)((uint32_t)ptr - sizeof(m_record_t));
     if ((uint32_t)mr == heap_begin) {
         memset((uint8_t *)mr, 0, sizeof(m_record_t));
         ptr = NULL;

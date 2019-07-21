@@ -5,6 +5,17 @@
 #include <kernel/isr.h>
 #include <kernel/ata.h>
 
+void mbr_pt_print(mbr_pt_entry_t *ptbl) {
+    printf("Partition table\n");
+    mbr_pt_entry_t* iter = ptbl;
+    for (int i = 0; i < 4; i++) {
+        if (iter->sys_id) {
+            printf("Part %d Start LBA: %d | Num Sectors: %d\n", i, iter->relative_sector, iter->total_sectors);
+        }
+        iter++;
+    }
+}
+
 void kernel_main(void) {
     terminal_initialize();
     isr_install();
@@ -20,13 +31,3 @@ void kernel_main(void) {
     }
 }
 
-void mbr_pt_print(mbr_pt_entry_t *ptbl) {
-    printf("Partition table\n");
-    mbr_pt_entry_t* iter = ptbl;
-    for (int i = 0; i < 4; i++) {
-        if (iter->sys_id) {
-            printf("Part %d Start LBA: %d | Num Sectors: %d\n", i, iter->relative_sector, iter->total_sectors);
-        }
-        iter++;
-    }
-}

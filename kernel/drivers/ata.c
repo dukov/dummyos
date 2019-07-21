@@ -212,6 +212,7 @@ mbr_pt_entry_t *mbr_read_pt(uint8_t drive_num) {
         pt->total_sectors = byte2long(tmp);
         pt++;
     }
+    UNUSED(tmp);
     return pt_start;
 } 
 
