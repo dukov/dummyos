@@ -39,6 +39,7 @@ stdlib/memcpy.o \
 stdlib/memset.o \
 stdlib/memmove.o \
 stdlib/byte2long.o \
+stdlib/push.o \
 string/memcmp.o \
 string/strlen.o \
 string/conv.o \

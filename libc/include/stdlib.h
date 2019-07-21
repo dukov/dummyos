@@ -37,6 +37,7 @@ void* memmove(void*, const void*, size_t);
 void* malloc(size_t size);
 void* realloc(void*, size_t);
 void free(void *ptr);
+void push(void *, void *, uint32_t);
 
 #ifdef __cplusplus
 }
