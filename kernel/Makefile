@@ -33,6 +33,7 @@ $(KERNEL_ARCH_OBJS) \
 kernel/kernel.o \
 kernel/shell.o \
 $(DRVDIR)/keyboard.o \
+$(DRVDIR)/ata.o \
 
 OBJS=\
 $(ARCHDIR)/crti.o \

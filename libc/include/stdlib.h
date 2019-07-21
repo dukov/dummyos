@@ -13,6 +13,8 @@ extern "C" {
 #define LEN(x) (sizeof(x) / sizeof((x)[0]))
 #define low_16(address) (uint16_t)((address) & 0xFFFF)
 #define high_16(address) (uint16_t)(((address) >> 16) & 0xFFFF)
+#define SLICE(src, tgt, start, len, iter) for (iter=0; iter<len; iter++ ) \
+                                              tgt[iter] = src[start+iter];
 
 #define HEAP_END 0x800000
 
@@ -27,6 +29,7 @@ void mm_init();
 
 __attribute__((__noreturn__))
 void abort(void);
+uint32_t byte2long(uint8_t byte_array[4]);
 
 void* memset(void*, int, size_t);
 char* malloc(size_t size);

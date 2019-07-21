@@ -34,6 +34,7 @@ stdio/putchar.o \
 stdio/puts.o \
 stdlib/abort.o \
 stdlib/malloc.o \
+stdlib/byte2long.o \
 string/memcmp.o \
 string/memcpy.o \
 string/memmove.o \
