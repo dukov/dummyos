@@ -32,7 +32,10 @@ void abort(void);
 uint32_t byte2long(uint8_t byte_array[4]);
 
 void* memset(void*, int, size_t);
-char* malloc(size_t size);
+void* memcpy(void* __restrict, const void* __restrict, size_t);
+void* memmove(void*, const void*, size_t);
+void* malloc(size_t size);
+void* realloc(void*, size_t);
 void free(void *ptr);
 
 #ifdef __cplusplus

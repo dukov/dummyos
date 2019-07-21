@@ -15,13 +15,6 @@ void mm_init() {
     memset((void *)heap_begin, 0, sizeof(m_record_t));
 }
 
-void* memset(void* bufptr, int value, size_t size) {
-	unsigned char* buf = (unsigned char*) bufptr;
-	for (size_t i = 0; i < size; i++)
-		buf[i] = (unsigned char) value;
-	return bufptr;
-}
-
 m_record_t *create_mr(m_record_t *cur_mr, m_record_t *next, size_t size) {
     m_record_t *new_mr = (m_record_t *)(
         (uint32_t)cur_mr + 
@@ -34,7 +27,7 @@ m_record_t *create_mr(m_record_t *cur_mr, m_record_t *next, size_t size) {
     return new_mr;
 }
 
-char* malloc(size_t size) {
+void *malloc(size_t size) {
     uint32_t cur_rec = heap_begin;
     while (cur_rec < heap_end) {
         m_record_t *mr = (m_record_t *)cur_rec;
@@ -42,20 +35,20 @@ char* malloc(size_t size) {
             uint32_t hole_size = (uint32_t)mr->next - ((uint32_t)mr + sizeof(m_record_t) + mr->size);
             if (size + sizeof(m_record_t) <= hole_size) {
                 m_record_t *new_mr = create_mr(mr, mr->next, size);
-                char *res = (char *)((uint32_t)new_mr + (sizeof(m_record_t)));
+                void *res = (void *)((uint32_t)new_mr + (sizeof(m_record_t)));
                 memset(res, 0, size);
                 return res;
             }
             cur_rec = (uint32_t)(mr->next);
         } else if (mr->next == NULL && mr->size != 0) {
                 m_record_t *new_mr = create_mr(mr, NULL, size);
-                char *res = (char *)((uint32_t)new_mr + (sizeof(m_record_t)));
+                void *res = (void *)((uint32_t)new_mr + (sizeof(m_record_t)));
                 memset(res, 0, size);
                 return res;
         } else {
             mr->size = size;
             mr->next = NULL;
-            return (char *)(cur_rec + (sizeof(m_record_t)));
+            return (void *)(cur_rec + (sizeof(m_record_t)));
         }
     }
     return NULL;

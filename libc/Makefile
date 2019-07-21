@@ -34,10 +34,12 @@ stdio/putchar.o \
 stdio/puts.o \
 stdlib/abort.o \
 stdlib/malloc.o \
+stdlib/realloc.o \
+stdlib/memcpy.o \
+stdlib/memset.o \
+stdlib/memmove.o \
 stdlib/byte2long.o \
 string/memcmp.o \
-string/memcpy.o \
-string/memmove.o \
 string/strlen.o \
 string/conv.o \
 string/strcmp.o \
