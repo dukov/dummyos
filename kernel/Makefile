@@ -20,6 +20,7 @@ LIBS:=$(LIBS) -nostdlib -lk -lgcc
 
 ARCHDIR=arch/$(HOSTARCH)
 DRVDIR=drivers
+FSDIR=fs
 
 include $(ARCHDIR)/make.config
 
@@ -34,6 +35,7 @@ kernel/kernel.o \
 kernel/shell.o \
 $(DRVDIR)/keyboard.o \
 $(DRVDIR)/ata.o \
+$(FSDIR)/ramfs.o \
 
 OBJS=\
 $(ARCHDIR)/crti.o \
